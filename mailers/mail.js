@@ -5,13 +5,13 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: 'amanarora002242@gmail.com',
-        pass: 'rvgsjylgjdlmkmfy'
+        user: 'jaygupta7655@gmail.com',
+        pass: 'rmexhvzlyfvmvnhi'
     }
 })
 
 const mailOptions = {
-    from: 'amanarora002242@gmail.com',
+    from: 'jaygupta7655@gmail.com',
     to: '',
     subject: '',
     text: ''
@@ -22,10 +22,10 @@ const sendMail = async (to, subject, text) => {
     mailOptions['to'] = to;
     mailOptions['subject'] = subject;
     mailOptions['text'] = text;
-
+console.log(sendMail,"sendmail--------");
     await transporter.sendMail(mailOptions, function (err, info) {
         if (err) {
-            console.log(err);
+            console.log("Error occured:",err);
         }
         else {
             console.log(info);

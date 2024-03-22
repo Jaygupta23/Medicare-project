@@ -4,9 +4,11 @@ import Layout from '../../component/Layout/Layout'
 import { useAuth } from '../../context/Auth'
 import { tostE, tostS } from '../../toast/Toast'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
     // context
+    const navigate = useNavigate();
     const [auth, setAuth] = useAuth();
     // state
     const [credentials, setCredentials] = useState({ name: "", email: "", phone: "", address: "", password: "", cpassword: "" });
@@ -42,6 +44,8 @@ const Profile = () => {
                     ls.user = data.updatedUser;
                     localStorage.setItem('auth', JSON.stringify(ls));
                     tostS("Profile Updated Successfully");
+                    navigate("/cart")
+
                 }
 
             } catch (error) {

@@ -15,9 +15,9 @@ const Layout = ({ children, title, description, keywords, author }) => {
                 <meta name='author' content={author} />
                 <title>{title}</title>
             </Helmet>
-            <Header />
-            <main style={{ minHeight: "70vh", width: "100vw", overflow: "scroll" }}> {children} </main>
-            <Footer />
+            <Header style={{ width: "100%"}} />
+            <main style={{ minHeight: "70vh" }}> {children} </main>
+            <Footer style={{ width: "100%"}} />
         </div>
     )
 }

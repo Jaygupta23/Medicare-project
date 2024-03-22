@@ -166,7 +166,7 @@ export const otpForResetPassword = async (req, res) => {
             otp: otp,
             time: d.getTime()
         })
-
+        
         res.status(200).send({
             success: true,
             message: "OTP Send Successfully"

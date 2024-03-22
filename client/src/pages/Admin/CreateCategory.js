@@ -119,7 +119,7 @@ const CreateCategory = () => {
                                             <tr>
                                                 <td key={c._id}>{c.name}</td>
                                                 <td>
-                                                    <button className="btn btn-primary mx-2" onClick={() => { setVisible(true); setUpdatedName(c.name); setSelected(c) }}>Edit</button>
+                                                    <button className="btn btn-success mx-2" onClick={() => { setVisible(true); setUpdatedName(c.name); setSelected(c) }}>Edit</button>
                                                     <button className="btn btn-danger mx-2 " onClick={() => handleDelete(c._id)} >Delete</button>
                                                 </td>
                                             </tr>

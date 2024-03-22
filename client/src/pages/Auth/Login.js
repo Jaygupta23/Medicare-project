@@ -67,7 +67,7 @@ const Login = () => {
                             <input type="password" className="form-control" id="password" name="password" placeholder='Password' value={password} onChange={handleChange} required />
                         </div>
                         <button type="submit" className="btn btn-primary">Login</button>
-                        <div className="forgot-btn text-end mt-2">
+                        <div className="forgot-btn text-primary fw-medium text-end mt-2">
                             <b onClick={() => { navigate('/forgot-password-send-otp') }} >Forgot Password</b>
                         </div>
                     </form>

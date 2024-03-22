@@ -22,6 +22,9 @@ const Register = () => {
         if (password !== cpassword) {
             tostE("Password Didn't Match");
         }
+        if(password && password.length < 6){
+            tostE("Password should be 6 character long")
+        }
         else {
             try {
                 const response = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, credentials);

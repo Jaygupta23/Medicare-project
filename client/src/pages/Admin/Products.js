@@ -56,11 +56,11 @@ const Products = () => {
                             {products?.map((p) => (
                                 <div key={p._id} onClick={() => handleClick(p)} className='product-link ' style={{ "cursor": 'pointer' }}>
                                     <div className="card m-2" style={{ width: "18rem" }}>
-                                        <img src={p.photo} alt={p.name} className="card-img-top" />
+                                        <img src={p.photo} alt={p.name} className="card-img-top" height="300px" />
                                         <div className="card-body">
-                                            <h5 className="card-title">{p.name}</h5>
-                                            <p className="card-text">{p.description.substring(0, 30)}</p>
-                                            <p className="card-text"> $ {p.price}</p>
+                                            <h5 className="card-title">{p.name.substring(0, 20)}</h5>
+                                            <p className="card-text">{p.description.substring(0, 32)}</p>
+                                            <p className="card-text"> Rs {p.price}</p>
                                         </div>
                                     </div>
                                 </div>

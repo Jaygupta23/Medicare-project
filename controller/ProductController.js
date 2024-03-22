@@ -96,7 +96,7 @@ export const productPhotoController = async (req, res) => {
 }
 
 
-// deltet product
+// delete product
 export const deleteProductController = async (req, res) => {
     try {
         await productModel.findByIdAndDelete(req.params.pid).select("-photo");
@@ -114,7 +114,7 @@ export const updateProductController = async (req, res) => {
         const { name, description, price, category, quantity, shipping } = req.body;
         const photo = req.file_name;
         const url = "http://localhost:8000/static/";
-
+        console.log(req.file_name,"photo")
         // validation
         switch (true) {
             case !name:
@@ -127,12 +127,16 @@ export const updateProductController = async (req, res) => {
                 return res.status(401).send({ success: false, error: "Category is Required" })
             case !quantity:
                 return res.status(401).send({ success: false, error: "Quantity is Required" })
-            case !photo:
-                return res.status(401).send({ success: false, error: "Photo is Required" })
+            
         }
+        if(!photo){
+        const product = await productModel.findByIdAndUpdate(req.params.pid, { name, slug: slugify(name), description, price, category, quantity, shipping, });
+        res.status(200).send({ success: true, message: "Product is Updated Successfully", product });
 
+        }else{
         const product = await productModel.findByIdAndUpdate(req.params.pid, { name, slug: slugify(name), description, price, category, quantity, shipping, photo: `${url}${photo}` });
         res.status(200).send({ success: true, message: "Product is Updated Successfully", product });
+        }
     } catch (error) {
         console.log(error);
         res.status(200).send({ success: false, error, message: "Error while updateing a product" })
