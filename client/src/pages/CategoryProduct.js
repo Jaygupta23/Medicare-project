@@ -9,7 +9,7 @@ import "../styles/CategoryProductStyle.css";
 const CategoryProduct = () => {
     const [products, setProducts] = useState();
     const [category, setCategory] = useState();
-    const [cart, setCart] = useCart();
+    const {cart, setCart} = useCart();
     const params = useParams();
     const navigate = useNavigate();
 
@@ -38,10 +38,10 @@ const CategoryProduct = () => {
                     {category && <>
                         <h4 className="text-center">Category - {category[0].name}</h4>
                         <h6 className="text-center">{products.length} result found</h6>
-                        <div className="row">
-                            <div className="col-md-9 offset-1">
-                                <h1 className='text-center'>All Products</h1>
-                                <div className="d-flex flex-wrap">
+                        <div className="">
+                            <div className="col-md-10 offset-1">
+                                <h1 className='ms-2'>All Products</h1>
+                                <div className="container d-flex flex-wrap">
 
                                     {products?.map((p, i) => (
                                         <div className="card m-2" style={{ width: "18rem" }} key={i}>

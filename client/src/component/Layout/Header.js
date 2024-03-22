@@ -1,4 +1,4 @@
-import React from "react";
+import React, {  useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsShop } from "react-icons/bs";
 import { useAuth } from "../../context/Auth";
@@ -10,8 +10,9 @@ import { useCart } from "../../context/Cart";
 import { FaHouseChimneyMedical } from "react-icons/fa6";
 import { HiShoppingBag } from "react-icons/hi2";
 const Header = () => {
+  const {toggle, setToggle} = useCart()
   const [auth, setAuth] = useAuth();
-  const [cart] = useCart();
+  const {cart} = useCart();
   const categories = useCategory();
   const handleLogout = () => {
     setAuth({
@@ -24,32 +25,39 @@ const Header = () => {
   };
 
   return (
-    <>
+    <div >
       <nav
         className="navbar navbar-expand-lg fixed-top "
-        style={{ backgroundColor: "#0A9A73", width: "100vw" }}
+        style={{ backgroundColor: "#0A9A73", height:"65px"}}
       >
-        <div className="container-fluid">
+        <div className="container-fluid" style={{ backgroundColor: "#0A9A73", width: "100vw"}}>
+        <Link className="navbar-brand text-light fs-2 d-lg-none">
+              <FaHouseChimneyMedical className="fs-1 pb-2" />
+              MediCare
+            </Link>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler position-sticky"
+            style={{top: "10px" , right: "20px",backgroundColor: "#0A9A73", }}
             type="button"
+            onClick={()=> setToggle(!toggle)}
+            
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            <span className="navbar-toggler-icon fs-7" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link className="navbar-brand text-light ">
-              <FaHouseChimneyMedical className="fs-3 pb-2" />
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo01" >
+            <Link className="navbar-brand text-light d-none d-lg-block fs-2">
+              <FaHouseChimneyMedical className="fs-1 pb-2" />
               MediCare
             </Link>
-            <div className="ms-auto">
-              <SearchInput />
+            <div className="mx-auto mt-4 mt-lg-0 mb-2 mb-lg-0">
+              <SearchInput className="d-md-none d-lg-block" />
             </div>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav  mb-2 mb-lg-0 ">
               <li className="nav-item mx-2">
                 <NavLink
                   className="nav-link text-light fw-bolder"
@@ -141,9 +149,9 @@ const Header = () => {
                 </>
               )}
               <li className="nav-item me-4">
-                <NavLink className="nav-link " to="/cart">
+                <NavLink className="nav-link mx-2" to="/cart">
                   <Badge
-                    className="text-light me-2"
+                    className="text-light "
                     count={cart?.length}
                     showZero
                     offset={[10, -5]}
@@ -153,10 +161,11 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
+            
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

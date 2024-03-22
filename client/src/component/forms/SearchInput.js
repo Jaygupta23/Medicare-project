@@ -24,12 +24,12 @@ const SearchInput = () => {
                     type="search"
                     placeholder='Search'
                     aria-label='Search'
-                    className="form-control me-2 "
-                    style={{ width: "30rem" }}
+                    className="form-control me-2"
+                    style={{ width: "18rem" }}
                     value={values.keyword}
                     onChange={(e) => setValues({ ...values, keyword: e.target.value })}
                 />
-                <button className="btn btn-outline-info text-light" type='submit'>Search</button>
+                {/* <button className="btn btn-outline-success text-light d-sm-block d-none" type='submit'>Search</button> */}
             </form>
         </div>
     )

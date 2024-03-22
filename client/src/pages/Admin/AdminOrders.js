@@ -37,12 +37,12 @@ const AdminOrders = () => {
     }
     return (
         <Layout title={"All Orders Data"} >
-            <div style={{ "marginTop": "5rem" }} >
+            <div style={{ "marginTop": "7rem" }} >
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-3 px-5">
                         <AdminMenu />
                     </div>
-                    <div className="col-md-9">
+                    <div className="col-md-9 px-5">
                         <h1 className="text-center">All Orders</h1>
 
                         {orders?.map((o, i) => {

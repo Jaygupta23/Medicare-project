@@ -13,8 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { cart } from "../redux/action-creators/index";
 import slide1 from "../images/slider1.jpg";
 import slide2 from "../images/slider2.jpg";
-import slide3 from "../images/slider3.jpg";
+import slide3 from "../images/slider3.jpg"
 import slide4 from "../images/slider4.webp"
+import slide5 from "../images/slider5.webp";
 import "../styles/Homepage.css";
 
 const HomePage = () => {
@@ -25,7 +26,7 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
-  const [carti, setCarti] = useCart();
+  const {cart, setCart} = useCart();
   const dispatch = useDispatch();
   const value = useSelector((state) => state.CartReducer.cart);
   // get all category
@@ -131,40 +132,43 @@ const HomePage = () => {
   };
 // console.log(products.length,"length-------------");
   const addToCart = async (p) => {
-    setCarti([...carti, p]);
+    setCart([...cart, p]);
     dispatch(cart([...value, p]));
-    localStorage.setItem("cart", JSON.stringify([...carti, p]));
+    localStorage.setItem("cart", JSON.stringify([...cart, p]));
     tostS("Item Added to Cart");
   };
 
   return (
-    <Layout title={"All Products - Best Offers"}>
-      <div>
+    <Layout title={"All Products - Best Offers"} >
+      <div >
         {/* banner image */}
         {/* <img
                     src={slide1}
                     className="banner-img"
                     alt="bannerimage"
-                    width={"100%"} height={"600px"}
+                    width={"100%"} height={"800px"}
                 /> */}
         <div
           id="carouselExampleInterval"
           className="carousel slide"
           data-bs-ride="carousel"
-          width="98%"
+          
         >
-          <div className="carousel-inner">
+          <div className="carousel-inner" >
             <div className="carousel-item active" data-bs-interval="10000">
-              <img src={slide1} className="d-block w-100"  height={"800px"} alt="..." />
+              <img src={slide1} className="d-block w-100 " height={"800px"}  alt="..." />
             </div>
             <div className="carousel-item" data-bs-interval="2000">
-              <img src={slide2} className="d-block w-100"  height={"800px"} alt="..." />
+              <img src={slide2} className="d-block w-100 "  height={"800px"} alt="..." />
             </div>
             <div className="carousel-item">
-              <img src={slide3} className="d-block w-100"  height={"800px"} alt="..." />
+              <img src={slide3} className="d-block w-100 "  height={"800px"} alt="..." />
             </div>
             <div className="carousel-item">
-              <img src={slide4} className="d-block w-100"  height={"800px"} alt="..." />
+              <img src={slide4} className="d-block w-100 "  height={"800px"} alt="..." />
+            </div>
+            <div className="carousel-item">
+              <img src={slide5} className="d-block w-100 "  height={"800px"} alt="..." />
             </div>
           </div>
           <button
@@ -187,7 +191,7 @@ const HomePage = () => {
           </button>
         </div>
         {/* banner image */}
-        <div className="row home-page row m-3 filters">
+        <div className="row home-page row m-3 filters mt-5">
           <div className="col-md-3">
             <h4 className="text-center pb-3">Filter By Category</h4>
             <div className="d-flex flex-column">
@@ -228,7 +232,7 @@ const HomePage = () => {
               hasMore={products.length > total}
               loader={<NormalSpinner />}
             >  
-              <div className="d-flex flex-wrap">
+              <div className="d-flex flex-wrap justify-content-center">
                 {products?.map((p, i) => (
                   // <Link key={p._id} to={`/dashboard/admin/product/${p.slug}`} className='product-link'>
                   <div className="card m-2" style={{ width: "20rem" }} key={i}>

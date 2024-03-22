@@ -9,7 +9,7 @@ import DropIn from "braintree-web-drop-in-react"
 import axios from 'axios'
 
 const CartPage = () => {
-    const [cart, setCart] = useCart();
+    const {cart, setCart} = useCart();
     const [auth, setAuth] = useAuth();
     const navigate = useNavigate();
     const [clientToken, setClientToken] = useState("");

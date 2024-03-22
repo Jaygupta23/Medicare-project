@@ -12,7 +12,7 @@ const Categories = () => {
                     <div className="row">
                         {categories?.map((e) => (
                             <div className="col-md-4 mt-5 mb-6 gx-3 gy-3" key={e._id} >
-                                <Link to={`/category/${e.slug}`} className='btn btn-primary fs-4' style={{ height: "5rem", width: "20rem" ,lineHeight: "4rem"}} >
+                                <Link to={`/category/${e.slug}`} className='btn btn-success fs-4' style={{ height: "5rem", width: "20rem" ,lineHeight: "4rem"}} >
                                     {e.name}
                                 </Link>
                             </div>

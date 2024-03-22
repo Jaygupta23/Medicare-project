@@ -45,14 +45,14 @@ const Products = () => {
 
     return (
         <Layout>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ "margin-top": "7rem" }} >
                 <div className="row" >
-                    <div className="col-md-3">
+                    <div className="col-md-3 px-5 mb-4">
                         <AdminMenu />
                     </div>
-                    <div className="col-md-9">
-                        <h1 className="text-cente">All Products List</h1>
-                        <div className="d-flex flex-wrap">
+                    <div className="col-md-9 px-3">
+                        <h1 className='text-center'>All Products List</h1>
+                        <div className="d-flex flex-wrap justify-content-center">
                             {products?.map((p) => (
                                 <div key={p._id} onClick={() => handleClick(p)} className='product-link ' style={{ "cursor": 'pointer' }}>
                                     <div className="card m-2" style={{ width: "18rem" }}>

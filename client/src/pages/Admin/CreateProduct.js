@@ -70,13 +70,13 @@ const CreateProduct = () => {
     }
     return (
         <Layout title={"Dashboard - Create Product"}>
-            <div style={{ "margin-top": "5rem" }} >
-                <div className="container-fluid m-3 p-3" >
+            <div style={{ "margin-top": "7rem" }} >
+                <div className="" >
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-md-3 px-5 ">
                             <AdminMenu />
                         </div>
-                        <div className="col-md-9">
+                        <div className="col-md-9 px-5">
                             <h1>Create product</h1>
                             <div className="m-1 w-75">
                                 <Select
@@ -93,7 +93,7 @@ const CreateProduct = () => {
                                     ))}
                                 </Select>
                                 <div className="mb-3 ">
-                                    <label className='btn btn-outline-secondary col-md-12'>
+                                    <label className='btn btn-outline-success col-md-12'>
                                         {photo ? photo.name : "Upload Photo"}
                                         <input type="file" name='photo' accept='image/*' onChange={(e) => setPhoto(e.target.files[0])} hidden />
                                     </label>
@@ -101,7 +101,7 @@ const CreateProduct = () => {
                                 <div className="mb-3">
                                     {photo && (
                                         <div className="text-center">
-                                            <img src={URL.createObjectURL(photo)} alt="product photo" height={'200px'} className='img img-responsive' />
+                                            <img src={URL.createObjectURL(photo)} alt="product-pic" height={'200px'} className='img img-responsive' />
                                         </div>
                                     )}
                                 </div>
@@ -124,7 +124,7 @@ const CreateProduct = () => {
                                     </Select>
                                 </div>
                                 <div className="mb-3">
-                                    <button className="btn btn-primary" onClick={handleCreate}>CREATE PRODUCT</button>
+                                    <button className="btn btn-success" onClick={handleCreate}>CREATE PRODUCT</button>
                                 </div>
                             </div>
                         </div>
