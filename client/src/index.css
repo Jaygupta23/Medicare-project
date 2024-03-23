@@ -45,9 +45,12 @@
     margin-top: 18rem;
   }
   .fullContent{
-    margin-top: 5rem;
+    margin-top: 4rem;
   }
 }
+
+
+
 /* ***************************footer***********************************/
 
 .footer {
@@ -102,11 +105,11 @@
 
 .contactus,
 .about {
-  margin: 0;
+  margin-top: 12rem;
   padding: 0;
   height: 70vh;
   display: flex;
-  align-items: center;
+  
   justify-content: center;
 }
 

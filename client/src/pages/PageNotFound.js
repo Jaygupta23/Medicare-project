@@ -5,7 +5,7 @@ import Layout from '../component/Layout/Layout'
 const PageNotFound = () => {
     return (
         <Layout title={"Go Back - Page Not Found"}>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 <div className="pnf" >
                     <h1 className="pnf-title">404</h1>
                     <h2 className="pnf-heading">Oops ! Page Not Found</h2>

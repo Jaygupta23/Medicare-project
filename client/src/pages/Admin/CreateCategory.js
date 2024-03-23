@@ -94,7 +94,7 @@ const CreateCategory = () => {
     }
     return (
         <Layout title={"Dashboard - Create Category"}>
-            <div style={{ "margin-top": "7rem" }} >
+            <div style={{ marginTop: "7rem" }} >
                 <div className="" >
                     <div className="row">
                         <div className="col-md-3 px-5">
@@ -116,8 +116,8 @@ const CreateCategory = () => {
                                     <tbody>
 
                                         {categories.map((c) => (
-                                            <tr>
-                                                <td key={c._id}>{c.name}</td>
+                                            <tr key={c._id}>
+                                                <td >{c.name}</td>
                                                 <td>
                                                     <button className="btn btn-success mx-md-4 mx-2" onClick={() => { setVisible(true); setUpdatedName(c.name); setSelected(c) }}>Edit</button>
                                                     <button className="btn btn-danger mx-md-4 mx-2" onClick={() => handleDelete(c._id)} >Delete</button>

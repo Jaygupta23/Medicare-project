@@ -18,7 +18,7 @@ const Search = () => {
     }
     return (
         <Layout title={'Search results'}>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 <div className="container home-page">
                     <div className="text-center mt-3" >
                         <h1>Search Results</h1>

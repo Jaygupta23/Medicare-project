@@ -119,7 +119,7 @@ const UpdateProduct = () => {
     return (
         <div>
             <Layout title={"Dashboard - Create Product"}>
-                <div style={{ "margin-top": "5rem" }} >
+                <div style={{ marginTop: "5rem" }} >
                     <div className=" m-3 p-3" >
                         <div className="row">
                             <div className="col-md-3">

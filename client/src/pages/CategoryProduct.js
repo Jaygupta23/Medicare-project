@@ -33,7 +33,7 @@ const CategoryProduct = () => {
     }
     return (
         <Layout>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 <div className="container mt-3 category">
                     {category && <>
                         <h4 className="text-center">Category - {category[0].name}</h4>

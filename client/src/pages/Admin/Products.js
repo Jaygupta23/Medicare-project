@@ -45,7 +45,7 @@ const Products = () => {
 
     return (
         <Layout>
-            <div style={{ "margin-top": "7rem" }} >
+            <div style={{ marginTop: "7rem" }} >
                 <div className="row" >
                     <div className="col-md-3 px-5 mb-4">
                         <AdminMenu />

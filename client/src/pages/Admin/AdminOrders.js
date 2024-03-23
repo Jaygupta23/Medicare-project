@@ -37,7 +37,7 @@ const AdminOrders = () => {
     }
     return (
         <Layout title={"All Orders Data"} >
-            <div style={{ "marginTop": "7rem" }} >
+            <div style={{ marginTop: "7rem" }} >
                 <div className="row">
                     <div className="col-md-3 px-5">
                         <AdminMenu />
@@ -47,7 +47,7 @@ const AdminOrders = () => {
 
                         {orders?.map((o, i) => {
                             return (
-                                <div className="border shadow">
+                                <div className="border shadow" key={i}>
                                     <table className="table">
                                         <thead>
                                             <tr>
@@ -82,7 +82,7 @@ const AdminOrders = () => {
                                         </tbody>
                                     </table>
                                     <div className="container">
-                                        {o?.products.map((p, i) => (
+                                        {o?.products.map((p) => (
                                             <div className="row mb-2 p-3 card flex-row" key={p._id}>
                                                 <div className="col-md-4">
                                                     <img src={p.photo} alt={p.name} width={"100px"} height={"100px"} />

@@ -50,7 +50,7 @@ const ProductDetails = () => {
 
     return (
         <Layout>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 {product &&
                     <>
                         <div className="row container mt-2 product-details">

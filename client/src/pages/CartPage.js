@@ -70,7 +70,7 @@ const CartPage = () => {
     }
     return (
         <Layout>
-            <div style={{ "marginTop": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 <div className="container cart-page" >
                     <div className="row">
                         <div className="col-md-12">

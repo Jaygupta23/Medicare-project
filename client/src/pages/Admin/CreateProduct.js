@@ -70,7 +70,7 @@ const CreateProduct = () => {
     }
     return (
         <Layout title={"Dashboard - Create Product"}>
-            <div style={{ "margin-top": "7rem" }} >
+            <div style={{ marginTop: "7rem" }} >
                 <div className="" >
                     <div className="row">
                         <div className="col-md-3 px-5 ">

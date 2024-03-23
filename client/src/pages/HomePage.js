@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { tostS } from "../toast/Toast";
 import { useCart } from "../context/Cart";
 import { useDispatch, useSelector } from "react-redux";
-import { cart } from "../redux/action-creators/index";
+// import { cart } from "../redux/action-creators/index";
 import slide1 from "../images/slider1.jpg";
 import slide2 from "../images/slider2.jpg";
 import slide3 from "../images/slider3.jpg"
