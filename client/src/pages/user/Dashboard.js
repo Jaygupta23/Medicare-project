@@ -7,7 +7,7 @@ const Dashboard = () => {
     const [auth] = useAuth();
     return (
         <Layout title={"User Dashboard"}>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 <div className="container-fluid m-3 p-3" >
                     <div className="row">
                         <div className="col-md-3">

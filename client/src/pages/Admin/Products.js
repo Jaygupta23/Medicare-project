@@ -45,7 +45,7 @@ const Products = () => {
 
     return (
         <Layout>
-            <div style={{ marginTop: "7rem" }} >
+            <div className='container-fluid' style={{ marginTop: "7rem" }} >
                 <div className="row" >
                     <div className="col-md-3 px-5 mb-4">
                         <AdminMenu />
@@ -60,7 +60,7 @@ const Products = () => {
                                         <div className="card-body">
                                             <h5 className="card-title">{p.name.substring(0, 20)}</h5>
                                             <p className="card-text">{p.description.substring(0, 32)}</p>
-                                            <p className="card-text"> Rs {p.price}</p>
+                                            <p className="card-text fw-semibold text-success fs-5   "> Rs {p.price}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -6,6 +6,7 @@ const CartContext = createContext()
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
   const [toggle, setToggle] =useState(false)
+  const [count, setCount] =useState(1)
 
 
     useEffect(() => {
@@ -14,7 +15,7 @@ const CartProvider = ({ children }) => {
     }, []);
 
     return (
-        <CartContext.Provider value={{cart, setCart, toggle, setToggle}}>
+        <CartContext.Provider value={{cart, setCart, setToggle, toggle, count, setCount}}>
             {children}
         </CartContext.Provider>
     );

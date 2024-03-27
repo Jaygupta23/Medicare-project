@@ -37,7 +37,7 @@ const AdminOrders = () => {
     }
     return (
         <Layout title={"All Orders Data"} >
-            <div style={{ marginTop: "7rem" }} >
+            <div className='container-fluid' style={{ marginTop: "7rem" }} >
                 <div className="row">
                     <div className="col-md-3 px-5">
                         <AdminMenu />
@@ -90,7 +90,7 @@ const AdminOrders = () => {
                                                 <div className="col-md-8">
                                                     <p>{p.name}</p>
                                                     <p>{p.description.substring(0, 300)}</p>
-                                                    <p>Price : $ {p.price}</p>
+                                                    <p>Price : Rs    {p.price}</p>
                                                 </div>
                                             </div>
                                         ))}

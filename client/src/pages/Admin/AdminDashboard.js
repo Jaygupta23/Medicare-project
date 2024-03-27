@@ -7,8 +7,8 @@ const AdminDashboard = () => {
     const [auth] = useAuth();
     return (
         <Layout title={"Admin Dashboard"}>
-            <div style={{ marginTop: "7rem" }} >
-                <div className="container-fluid m-3 p-3" >
+            <div style={{ marginTop: "7rem", backgroundColor: "linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%)" }} >
+                <div className="m-3 p-3" >
                     <div className="row">
                         <div className="col-md-3 px-5">
                             <AdminMenu />

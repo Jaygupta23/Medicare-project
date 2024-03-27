@@ -71,7 +71,7 @@ const CreateProduct = () => {
     return (
         <Layout title={"Dashboard - Create Product"}>
             <div style={{ marginTop: "7rem" }} >
-                <div className="" >
+                <div className="container-fluid" >
                     <div className="row">
                         <div className="col-md-3 px-5 ">
                             <AdminMenu />

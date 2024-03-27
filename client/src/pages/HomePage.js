@@ -9,13 +9,15 @@ import NormalSpinner from "../component/NormalSpinner";
 import { useNavigate } from "react-router-dom";
 import { tostS } from "../toast/Toast";
 import { useCart } from "../context/Cart";
-import { useDispatch, useSelector } from "react-redux";
-// import { cart } from "../redux/action-creators/index";
+// import { useDispatch, useSelector } from "react-redux";
+// import { carts } from "../redux/action-creators/index";
 import slide1 from "../images/slider1.jpg";
 import slide2 from "../images/slider2.jpg";
-import slide3 from "../images/slider3.jpg"
-import slide4 from "../images/slider4.webp"
+import slide3 from "../images/slider3.jpg";
+import slide4 from "../images/slider4.webp";
 import slide5 from "../images/slider5.webp";
+import { HiShoppingBag } from "react-icons/hi2";
+import { FaClipboardList } from "react-icons/fa";
 import "../styles/Homepage.css";
 
 const HomePage = () => {
@@ -26,10 +28,13 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
-  const {cart, setCart} = useCart();
-  const dispatch = useDispatch();
-  const value = useSelector((state) => state.CartReducer.cart);
+  const { cart, setCart } = useCart();
+  const [loader, setloader] = useState(true)
+  // const dispatch = useDispatch();
+  // const value = useSelector((state) => state.CartReducer.carts);
   // get all category
+  const userSignIn = JSON.parse(localStorage.getItem("auth"))
+  
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(
@@ -55,6 +60,7 @@ const HomePage = () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
       );
+      
       setPage(page + 1);
       if (data?.success) {
         setProducts(data.products);
@@ -74,6 +80,7 @@ const HomePage = () => {
       if (data?.success) {
         setProducts(products.concat(data.products));
       }
+      setloader(false)
     } catch (error) {
       console.log(error);
     }
@@ -123,24 +130,33 @@ const HomePage = () => {
         { checked, radio }
       );
       if (data?.success) {
-        if(data.products)
-        setProducts(data?.products);
+        if (data.products) setProducts(data?.products);
       }
     } catch (error) {
       console.log(error);
     }
   };
-// console.log(products.length,"length-------------");
+  // console.log(products.length,"length-------------");
   const addToCart = async (p) => {
-    setCart([...cart, p]);
-    dispatch(cart([...value, p]));
-    localStorage.setItem("cart", JSON.stringify([...cart, p]));
-    tostS("Item Added to Cart");
+    if(!userSignIn){
+      navigate("/login")
+    }
+    const findProduct = cart.find((prev)=> prev._id === p._id)
+    if(findProduct){
+      tostS("Item is already Added to Cart")
+    }else{
+      const newCart = [...cart, {...p, count: p.count+1}];
+      
+      setCart(newCart);
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      tostS("Item Added to Cart");  
+      
+    } 
   };
 
   return (
-    <Layout title={"All Products - Best Offers"} >
-      <div >
+    <Layout title={"All Products - Best Offers"}>
+      <div>
         {/* banner image */}
         {/* <img
                     src={slide1}
@@ -152,23 +168,47 @@ const HomePage = () => {
           id="carouselExampleInterval"
           className="carousel slide"
           data-bs-ride="carousel"
-          
         >
-          <div className="carousel-inner" >
+          <div className="carousel-inner">
             <div className="carousel-item active" data-bs-interval="10000">
-              <img src={slide1} className="d-block w-100 " height={"800px"}  alt="..." />
+              <img
+                src={slide1}
+                className="d-block w-100 "
+                height={"800px"}
+                alt="..."
+              />
             </div>
             <div className="carousel-item" data-bs-interval="2000">
-              <img src={slide2} className="d-block w-100 "  height={"800px"} alt="..." />
+              <img
+                src={slide2}
+                className="d-block w-100 "
+                height={"800px"}
+                alt="..."
+              />
             </div>
             <div className="carousel-item">
-              <img src={slide3} className="d-block w-100 "  height={"800px"} alt="..." />
+              <img
+                src={slide3}
+                className="d-block w-100 "
+                height={"800px"}
+                alt="..."
+              />
             </div>
             <div className="carousel-item">
-              <img src={slide4} className="d-block w-100 "  height={"800px"} alt="..." />
+              <img
+                src={slide4}
+                className="d-block w-100 "
+                height={"800px"}
+                alt="..."
+              />
             </div>
             <div className="carousel-item">
-              <img src={slide5} className="d-block w-100 "  height={"800px"} alt="..." />
+              <img
+                src={slide5}
+                className="d-block w-100 "
+                height={"800px"}
+                alt="..."
+              />
             </div>
           </div>
           <button
@@ -177,7 +217,10 @@ const HomePage = () => {
             data-bs-target="#carouselExampleInterval"
             data-bs-slide="prev"
           >
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Previous</span>
           </button>
           <button
@@ -186,7 +229,10 @@ const HomePage = () => {
             data-bs-target="#carouselExampleInterval"
             data-bs-slide="next"
           >
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Next</span>
           </button>
         </div>
@@ -195,9 +241,10 @@ const HomePage = () => {
           <div className="col-md-3">
             <h4 className="text-center pb-3">Filter By Category</h4>
             <div className="d-flex flex-column">
-              {categories?.map((c, i) => (
-                <Checkbox style={{marginLeft: "10px"}}
-                  key={c._id}
+              {categories?.map((c, index) => (
+                <Checkbox
+                  style={{ marginLeft: "10px" }}
+                  key={index}
                   onChange={(e) => handleFilter(e.target.checked, c._id)}
                 >
                   {c.name}
@@ -208,8 +255,8 @@ const HomePage = () => {
             <h4 className="text-center mt-4 pb-2">Filter By Price</h4>
             <div className="d-flex flex-column">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                {Prices?.map((p, i) => (
-                  <div key={p._id}>
+                {Prices?.map((p, index) => (
+                  <div key={index}>
                     <Radio value={p.array}> Rs {p.name} </Radio>
                   </div>
                 ))}
@@ -229,34 +276,40 @@ const HomePage = () => {
             <InfiniteScroll
               dataLength={products.length}
               next={fetchMoreData}
-              hasMore={products.length > total}
+              hasMore={loader}
               loader={<NormalSpinner />}
-            >  
+            >
               <div className="d-flex flex-wrap justify-content-center">
-                {products?.map((p, i) => (
+                {products?.map((p, index) => (
                   // <Link key={p._id} to={`/dashboard/admin/product/${p.slug}`} className='product-link'>
-                  <div className="card m-2" style={{ width: "20rem" }} key={i}>
+                  <div
+                    className="card m-2"
+                    style={{ width: "20rem" }}
+                    key={index}
+                  >
                     <img src={p.photo} alt={p.name} className="card-img-top" />
                     <div className="card-body">
                       <div className="card-name-price">
-                        <h5 className="card-title w-75">{p.name.substring(0, 15)}</h5>
-                        <h5 className="card-title card-price"> Rs {p.price}</h5>
+                        <h6 className="card-title w-75 fw-bold pt-1">
+                          {p.name.substring(0, 16)}
+                        </h6>
+                        <h6 className="card-title card-price"> Rs {p.price}</h6>
                       </div>
-                      <p className="card-text">
+                      {/* <p className="card-text">
                         {p.description.substring(0, 30)}
-                      </p>
+                      </p> */}
                       <div className="card-name-price">
                         <button
                           className="btn btn-primary rounded-2 me-1"
                           onClick={() => navigate(`/product/${p._id}`)}
                         >
-                          More Details
+                          More Details <FaClipboardList className="fs-6 mb-1 ms-1"  />
                         </button>
                         <button
                           className="btn btn-danger ms-1 rounded-2"
                           onClick={() => addToCart(p)}
                         >
-                          Add to cart
+                          Add to cart <HiShoppingBag className="fs-6 mb-1 ms-1" />
                         </button>
                       </div>
                     </div>

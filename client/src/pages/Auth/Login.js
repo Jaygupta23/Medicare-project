@@ -55,7 +55,7 @@ const Login = () => {
     }, []);
     return (
         <Layout title={"Login - Ecommerce app"}>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 <div className=" form-container" >
                     <form onSubmit={handleSubmit}>
                         <h1 className='title'>LOGIN FORM</h1>

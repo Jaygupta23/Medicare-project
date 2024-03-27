@@ -10,7 +10,7 @@ const ProductDetails = () => {
     const params = useParams();
     const [product, setProduct] = useState();
     const [relatedProduct, setRelatedProduct] = useState();
-    const [cart, setCart] = useCart();
+    const {cart, setCart} = useCart();
     const navigate = useNavigate();
 
     const getProduct = async () => {
@@ -43,28 +43,31 @@ const ProductDetails = () => {
     }
 
     const addToCart = async (p) => {
-        setCart([...cart, p]);
-        localStorage.setItem("cart", JSON.stringify([...cart, p]));
+        const newCart = [...cart, p]
+        setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
         tostS("Item Added to Cart")
     }
-
+    
     return (
         <Layout>
             <div style={{ marginTop: "5rem" }} >
                 {product &&
                     <>
-                        <div className="row container mt-2 product-details">
-                            <div className="col-md-6">
-                                <img className='card-img=top' src={product.photo} alt={product.name} />
+                        <div className='container'>
+                        <div className="row  product-details mb-5">
+                            <div className="col-md-5 my-auto pt-5">
+                                <img className='card-img=top img-fluid' src={product.photo} alt={product.name} />
                             </div>
-                            <div className="col-md-6 ">
-                                <h1 className='text-center'>Product Details</h1>
-                                <h6>Name: {product.name}</h6>
-                                <h6>Description: {product.description}</h6>
-                                <h6>Price: {product.price}</h6>
-                                <h6>Category: {product.category.name}</h6>
-                                <button className="btn btn-secondary ms-1" onClick={() => addToCart(product)}>ADD TO CART</button>
+                            <div className="col-md-6 offset-1 mt-5">
+                                <h1 className='text-center pb-4'>Product Details</h1>
+                                <h6 className='my-3'><strong>Name:</strong> {product.name}</h6>
+                                <h6 className='my-3'><strong>Description:</strong> {product.description}</h6>
+                                <h6 className='my-3'><strong>Price:</strong> Rs {product.price}</h6>
+                                <h6 className='my-3'> <strong>Category:</strong> {product.category.name}</h6>
+                                <button className="btn btn-success fw-semibold ms-1 my-3" onClick={() => addToCart(product)}>ADD TO CART</button>
                             </div>
+                        </div>
                         </div>
                         <hr /> </>}
 
@@ -81,12 +84,12 @@ const ProductDetails = () => {
                                 <div className="card-body">
                                     <div className="card-name-price">
                                         <h5 className="card-title">{p.name}</h5>
-                                        <p className="card-title card-price"> $ {p.price}</p>
+                                        <p className="card-title card-price"> Rs {p.price}</p>
                                     </div>
                                     <p className="card-text">{p.description.substring(0, 30)}</p>
                                     <div className="card-name-price">
-                                        <button className="btn btn-info ms-1" onClick={() => navigate(`/product/${p._id}`)} >More Details</button>
-                                        <button className="btn btn-dark ms-1" onClick={() => addToCart(p)} >Add to cart</button>
+                                        <button className="btn btn-primary text-light mx-1 " onClick={() => navigate(`/product/${p._id}`)} >More Details</button>
+                                        <button className="btn btn-success ms-1 " onClick={() => addToCart(p)} >Add to cart</button>
                                     </div>
                                 </div>
                             </div>

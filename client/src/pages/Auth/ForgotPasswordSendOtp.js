@@ -41,7 +41,7 @@ const ForgotPasswordSendOtp = () => {
 
     return (
         <Layout title={"Forgot Password - Ecommerce app"}>
-            <div style={{ "margin-top": "5rem" }} >
+            <div style={{ marginTop: "5rem" }} >
                 <div className=" form-container" >
                     <form onSubmit={handleSubmit}>
                         <h1 className='title'>RESET PASSWORD</h1>

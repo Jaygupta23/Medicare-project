@@ -16,7 +16,7 @@ export const epId = (id) => {
     }
 }
 
-export const cart = (count) => {
+export const carts = (count) => {
     return (dispatch) => {
         dispatch({
             type: "Add Product to Cart",

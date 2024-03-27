@@ -120,7 +120,7 @@ const UpdateProduct = () => {
         <div>
             <Layout title={"Dashboard - Create Product"}>
                 <div style={{ marginTop: "5rem" }} >
-                    <div className=" m-3 p-3" >
+                    <div className="container-fluid m-3 p-3" >
                         <div className="row">
                             <div className="col-md-3">
                                 <AdminMenu />
