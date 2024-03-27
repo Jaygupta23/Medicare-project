@@ -80,7 +80,7 @@ const HomePage = () => {
       if (data?.success) {
         setProducts(products.concat(data.products));
       }
-      setloader(false)
+      setloader(!loader)
     } catch (error) {
       console.log(error);
     }
@@ -112,14 +112,22 @@ const HomePage = () => {
     }
     setChecked(all);
   };
-  useEffect(() => {
-    if (!checked.length && !radio.length) getAllProduct();
-    // eslint-disable-next-line
-  }, [checked.length, radio.length]);
+  // useEffect(() => {
+  //   if (!checked.length && !radio.length) getAllProduct();
+  //   // eslint-disable-next-line
+  // }, [checked.length, radio.length]);
+
+  // useEffect(() => {
+  //   if (checked.length || radio.length) filterProduct();
+  //   // eslint-disable-next-line
+  // }, [checked, radio]);
 
   useEffect(() => {
-    if (checked.length || radio.length) filterProduct();
-    // eslint-disable-next-line
+    if (!checked.length && !radio) {
+      getAllProduct();
+    } else {
+      filterProduct(); // Fetch filtered products when filters are applied
+    }
   }, [checked, radio]);
 
   // get filter product
@@ -326,11 +334,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-// {
-//     Prices.map(p => (
-//         <div key={p._id}>
-//             <Radio value={p.array}> {p.name} </Radio>
-//         </div>
-//     ))
-// }
